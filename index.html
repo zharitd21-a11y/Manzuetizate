@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f35">
+  <title>Manzuetízate</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: Arial, sans-serif;
+      background: #f4f0df;
+      color: #173f35;
+      text-align: center;
+    }
+    main {
+      max-width: 520px;
+      margin: 20px auto;
+      padding: 24px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px #0002;
+    }
+    h1 { color: #176348; }
+    button {
+      display: block;
+      width: 100%;
+      margin: 12px 0;
+      padding: 15px;
+      border: 0;
+      border-radius: 12px;
+      background: #176348;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+    }
+    button:focus { outline: 3px solid #e6b84c; }
+    #mensaje { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <main>
+    <div style="font-size:60px">🧭</div>
+    <h1>¡Bienvenidos a Manzuetízate!</h1>
+    <h2>La misión de Manzu</h2>
+    <p>¡Hola, exploradores! Soy Manzu. Hoy deberán descubrir nuestras raíces y construir nuestro horizonte institucional.</p>
+    <p>Trabajen en equipo, conversen y resuelvan los retos para conseguir la llave.</p>
+    <button onclick="iniciar()">¡Comenzar la misión!</button>
+
+    <section id="reto" hidden>
+      <h2>🌎 Mundo 1: Descubre nuestras raíces</h2>
+      <p>¿Por qué es importante conocer la historia de nuestro colegio?</p>
+      <button onclick="responder(false)">A. Porque no sirve para nada.</button>
+      <button onclick="responder(true)">B. Porque nos ayuda a conocer nuestra identidad.</button>
+      <button onclick="responder(false)">C. Porque debemos memorizar todo sin comprenderlo.</button>
+      <p id="mensaje" aria-live="polite"></p>
+      <button id="continuar" onclick="finalizar()" hidden>Recibir la llave 🔑</button>
+    </section>
+
+    <section id="final" hidden>
+      <h2>🔑 ¡Misión superada!</h2>
+      <p>Han conseguido la primera llave de Manzuetízate.</p>
+      <p>¡Pronto podrán continuar hacia el segundo mundo!</p>
+      <button onclick="location.reload()">Volver a jugar</button>
+    </section>
+  </main>
+
+  <script>
+    function iniciar() {
+      document.getElementById('reto').hidden = false;
+      document.getElementById('final').hidden = true;
+      document.getElementById('mensaje').textContent = '';
+      document.getElementById('continuar').hidden = true;
+    }
+
+    function responder(correcta) {
+      const mensaje = document.getElementById('mensaje');
+      if (correcta) {
+        mensaje.textContent = '¡Muy bien, exploradores! Han superado el reto.';
+        document.getElementById('continuar').hidden = false;
+      } else {
+        mensaje.textContent = '¡Intenten de nuevo! Piensen en lo que nos identifica como comunidad.';
+      }
+    }
+
+    function finalizar() {
+      document.getElementById('reto').hidden = true;
+      document.getElementById('final').hidden = false;
+    }
+  </script>
+</body>
+</html>
